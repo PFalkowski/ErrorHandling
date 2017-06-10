@@ -1,9 +1,9 @@
 .NET Standard Infrastructure for creating error handling policy classes with couple of basic implementations:
 
-- LogException policy
-- Collect and ignore
-- Ignore
-- Aggregated wrapper
+- Log exception policy
+- Collect and ignore exception policy
+- Ignore exception policy
+- Aggregated wrapper for exception policies
 
 and customizable exception filter.
 
