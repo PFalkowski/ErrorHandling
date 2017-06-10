@@ -1,6 +1,5 @@
 ﻿using NSubstitute;
 using System;
-using System.Reflection;
 using Xunit;
 
 namespace ErrorHandling.Test
