@@ -9,3 +9,5 @@ Package provides .NET Standard Infrastructure (.NET Core & .NET Classic comaptib
 - Customizable exception filter
 
 Contributions are welcomed.
+
+Available on Nuget at https://www.nuget.org/packages/ExceptionHandlingStrategies/
