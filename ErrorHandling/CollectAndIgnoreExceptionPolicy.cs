@@ -17,7 +17,7 @@ namespace ErrorHandling
         public int StoreLastNExceptions
         {
             get => _storeLastNExceptions;
-            set => _storeLastNExceptions = value > MinNExceptions ? value : MinNExceptions;
+            set => _storeLastNExceptions = Math.Max(value, MinNExceptions);
         }
 
         public Exception LastException { get; private set; }

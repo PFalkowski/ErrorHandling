@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using NSubstitute;
 using Xunit;
 
@@ -52,5 +53,19 @@ namespace ErrorHandling.Test
             policySubstitute.Received(1).HandleException(exception);
         }
 
+
+        [Fact]
+        public void HandleExceptionRethrowsExceptionsWrappedInAggregate()
+        {
+            var exception = new DllNotFoundException();
+            var policySubstitute = Substitute.For<IExceptionHandlingPolicy>();
+            policySubstitute.When((policy) => { policy.HandleException(Arg.Any<Exception>()); }).Do((policy) => throw new VerificationException());
+            var policies = new List<IExceptionHandlingPolicy> { policySubstitute, default(IExceptionHandlingPolicy) };
+            var tested = new AggregatedExceptionHandlingPolicy(policies);
+
+            // act & assert
+
+            Assert.Throws<AggregateException>(() => tested.HandleException(exception));
+        }
     }
 }

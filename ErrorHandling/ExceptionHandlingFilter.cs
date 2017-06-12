@@ -8,12 +8,12 @@ namespace ErrorHandling
         private readonly IExceptionHandlingPolicy _wrappedPolicy;
 
         /// <summary>
-        /// Add your unhandlable exception types here
+        /// Add your unhandlable / filtered out exception types to this HashSet
         /// </summary>
         public readonly HashSet<Type> ExcludedExceptios = new HashSet<Type>
         {
             typeof (OutOfMemoryException),
-            typeof(InsufficientExecutionStackException)
+            typeof (InsufficientExecutionStackException)
         };
 
         public ExceptionHandlingFilter(IExceptionHandlingPolicy wrappedPolicy)
