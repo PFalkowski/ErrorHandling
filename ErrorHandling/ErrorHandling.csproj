@@ -17,7 +17,7 @@ Collect and ignore exception policy
 Ignore exception policy 
 Aggregated wrapper for exception policies 
 Customizable exception filter</Description>
-    <Version>1.1.2</Version>
+    <Version>1.1.0</Version>
     <PackageId>ExceptionHandlingStrategies</PackageId>
     <Authors>Piotr Falkowski</Authors>
     <Company />
