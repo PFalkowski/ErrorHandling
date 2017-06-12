@@ -7,11 +7,6 @@ namespace ErrorHandling
 {
     public static class Extensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="aggregated"></param>
-        /// <returns></returns>
         public static string Summary(this IEnumerable<Exception> aggregated)
         {
             if (aggregated == null) throw new ArgumentNullException(nameof(aggregated));
