@@ -16,10 +16,7 @@ Log exception policy
 Collect and ignore exception policy 
 Ignore exception policy 
 Aggregated wrapper for exception policies 
-Customizable exception filter
-
-
-Notice: Do not worry when Nuget pulls all .NET standard libraries while targeting .NET classic - this is to be expected currently and will be fixed in .NETStandard 2.0; see https://github.com/npgsql/npgsql/issues/1457 for issue reference</Description>
+Customizable exception filter</Description>
     <Version>2.0.0</Version>
     <PackageId>ExceptionHandlingStrategies</PackageId>
     <Authors>Piotr Falkowski</Authors>
