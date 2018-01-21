@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Copyright>Piotr Falkowski © 2017</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PFalkowski/ErrorHandling</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/ErrorHandling</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Error Handling, Exception Handling, .NETCore, .NETStandard</PackageTags>
+    <PackageTags>exception-handling,strategy,netcore,netstandard</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>Exceptions are irrelevant, untill they occur. Then, they are absolutely central. A mundane task of adding the same behaviour of displaying the error message to the screen or logging it to file or event log is wasteful and can lead to errors. The package reduces the amount of bloat to zero using strategy pattern (a.k.a. policy-based design).
 
@@ -20,12 +20,12 @@ Customizable exception filter
 
 
 Notice: Do not worry when Nuget pulls all .NET standard libraries while targeting .NET classic - this is to be expected currently and will be fixed in .NETStandard 2.0; see https://github.com/npgsql/npgsql/issues/1457 for issue reference</Description>
-    <Version>1.2.0</Version>
+    <Version>2.0.0</Version>
     <PackageId>ExceptionHandlingStrategies</PackageId>
     <Authors>Piotr Falkowski</Authors>
     <Company />
     <Product>ErrorHandlingStrategies</Product>
-    <PackageReleaseNotes>Add RethrowExceptionPolicy</PackageReleaseNotes>
+    <PackageReleaseNotes>Update .NET sdk to 2.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
