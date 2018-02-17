@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ErrorHandling
 {
@@ -13,6 +14,8 @@ namespace ErrorHandling
         public readonly HashSet<Type> ExcludedExceptios = new HashSet<Type>
         {
             typeof (OutOfMemoryException),
+            typeof(StackOverflowException),
+            typeof(ThreadAbortException),
             typeof (InsufficientExecutionStackException)
         };
 
