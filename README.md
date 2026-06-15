@@ -1,4 +1,4 @@
-# ExceptionHandlingStrategies
+﻿# ExceptionHandlingStrategies
 
 [![CI](https://github.com/PFalkowski/ErrorHandling/actions/workflows/ci.yml/badge.svg)](https://github.com/PFalkowski/ErrorHandling/actions/workflows/ci.yml)
 [![NuGet version](https://img.shields.io/nuget/v/ExceptionHandlingStrategies.svg)](https://www.nuget.org/packages/ExceptionHandlingStrategies/)
@@ -9,6 +9,12 @@
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow.svg)](https://www.buymeacoffee.com/piotrfalkowski)
 
 Exception handling policy infrastructure using the Strategy pattern. Decouples exception-handling behaviour from business logic — wire in a policy once; change it without touching callers.
+
+## Install
+
+```bash
+dotnet add package ExceptionHandlingStrategies
+```
 
 ## Policies
 
