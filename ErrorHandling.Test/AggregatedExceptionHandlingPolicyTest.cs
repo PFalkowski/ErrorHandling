@@ -30,7 +30,7 @@ namespace ErrorHandling.Test
                 new List<IExceptionHandlingPolicy> { policySubstitute, default(IExceptionHandlingPolicy) };
             var tested = new AggregatedExceptionHandlingPolicy(policies);
             Assert.NotNull(tested.Policies);
-            Assert.Equal(1, tested.Policies.Count);
+            Assert.Single(tested.Policies);
             Assert.Equal(policies[0], policySubstitute);
         }
 
@@ -42,7 +42,7 @@ namespace ErrorHandling.Test
             var policies = new List<IExceptionHandlingPolicy> { policySubstitute, default(IExceptionHandlingPolicy) };
             var tested = new AggregatedExceptionHandlingPolicy(policies);
             Assert.NotNull(tested.Policies);
-            Assert.Equal(1, tested.Policies.Count);
+            Assert.Single(tested.Policies);
 
             // act
 

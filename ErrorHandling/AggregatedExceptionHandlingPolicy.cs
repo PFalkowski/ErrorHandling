@@ -10,7 +10,8 @@ namespace ErrorHandling
         public ConcurrentDictionary<Type, IExceptionHandlingPolicy> Policies { get; }
         public AggregatedExceptionHandlingPolicy(IEnumerable<IExceptionHandlingPolicy> policies)
         {
-            var dictionary = policies?.Where(policy => policy != null).ToDictionary(policy => policy.GetType());
+            var dictionary = policies?.Where(policy => policy != null).ToDictionary(policy => policy.GetType())
+                ?? new Dictionary<Type, IExceptionHandlingPolicy>();
             Policies = new ConcurrentDictionary<Type, IExceptionHandlingPolicy>(dictionary);
         }
 

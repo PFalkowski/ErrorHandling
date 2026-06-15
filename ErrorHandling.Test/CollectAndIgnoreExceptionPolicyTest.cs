@@ -34,11 +34,11 @@ namespace ErrorHandling.Test
             var exception = (Exception)Activator.CreateInstance(exceptionToExcludeType);
             tested.HandleException(exception);
 
-            Assert.Equal(exceptionToExcludeType, tested.LastException.GetType());
+            Assert.Equal(exceptionToExcludeType, tested.LastException!.GetType());
             Assert.False(tested.Exceptions.IsEmpty);
-            Assert.Equal(1, tested.Exceptions.Count);
-            tested.Exceptions.TryPeek(out Exception received);
-            Assert.Equal(exceptionToExcludeType, received.GetType());
+            Assert.Single(tested.Exceptions);
+            tested.Exceptions.TryPeek(out Exception? received);
+            Assert.Equal(exceptionToExcludeType, received!.GetType());
         }
 
         [Theory]
@@ -58,8 +58,8 @@ namespace ErrorHandling.Test
             // Act
             var lastNExcp = tested.LastNExceptions(lastN);
 
-            Assert.Equal(4,tested.Exceptions.Count);
-            Assert.Equal(typeof(ArrayTypeMismatchException), tested.LastException.GetType());
+            Assert.Equal(4, tested.Exceptions.Count);
+            Assert.Equal(typeof(ArrayTypeMismatchException), tested.LastException!.GetType());
 
             Assert.Equal(lastN, lastNExcp.Count());
             Assert.Equal(typeof(ArrayTypeMismatchException), tested.LastException.GetType());

@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using Xunit;
 
@@ -29,15 +28,16 @@ namespace ErrorHandling.Test
             var exceptionsAggregated = new List<Exception> { error1, error2, error3, error4, error5 };
             var received = exceptionsAggregated.Summary();
 
-            Assert.True(received.Contains(nameof(DllNotFoundException)));
-            Assert.True(received.Contains(nameof(ArgumentException)));
-            Assert.True(received.Contains(nameof(COMException)));
+            Assert.Contains(nameof(DllNotFoundException), received);
+            Assert.Contains(nameof(ArgumentException), received);
+            Assert.Contains(nameof(COMException), received);
 
-            Assert.True(Regex.IsMatch(received, OpeningSequenceMultipleRegex));
-            Assert.True(Regex.IsMatch(received, $"{nameof(ArgumentException)}{RegexForThreeTimes}"));
-            Assert.True(Regex.IsMatch(received, $"{nameof(DllNotFoundException)}{RegexForOnce}"));
-            Assert.True(Regex.IsMatch(received, $"{nameof(COMException)}{RegexForOnce}"));
+            Assert.Matches(OpeningSequenceMultipleRegex, received);
+            Assert.Matches($"{nameof(ArgumentException)}{RegexForThreeTimes}", received);
+            Assert.Matches($"{nameof(DllNotFoundException)}{RegexForOnce}", received);
+            Assert.Matches($"{nameof(COMException)}{RegexForOnce}", received);
         }
+
         [Fact]
         public void SummaryOrdersErrorsFromMostOccuringDescending()
         {
@@ -49,23 +49,26 @@ namespace ErrorHandling.Test
             var exceptionsAggregated = new List<Exception> { error1, error2, error3, error4 };
             var received = exceptionsAggregated.Summary();
             var multilineRegex = new Regex($"{OpeningSequenceMultipleRegex}.?.?.?({error2.GetType().FullName}|{error2.GetType().Name}){RegexForThreeTimes}", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            Assert.True(multilineRegex.IsMatch(received));
+            Assert.Matches(multilineRegex, received);
         }
+
         [Fact]
         public void SummaryGentlyRespondsWhenNoErrors()
         {
             var received = new List<Exception>().Summary();
 
-            Assert.True(_noErrorsRegex.IsMatch(received));
+            Assert.Matches(_noErrorsRegex, received);
         }
+
         [Fact]
         public void SummaryThrowsWhenNullArguiment()
         {
-            List<Exception> received = null;
+            List<Exception>? received = null;
 
-            Assert.Throws<ArgumentNullException>(() => Extensions.Summary(received));
-            Assert.Throws<ArgumentNullException>(() => received.Summary());
+            Assert.Throws<ArgumentNullException>(() => Extensions.Summary(received!));
+            Assert.Throws<ArgumentNullException>(() => received!.Summary());
         }
+
         [Fact]
         public void SummaryDoesNotPluralizeWhenOnlyOneErrorOccurred()
         {
@@ -74,9 +77,8 @@ namespace ErrorHandling.Test
             var exceptionsAggregated = new List<Exception> { error1 };
             var received = exceptionsAggregated.Summary();
 
-            Assert.True(received.Contains(nameof(COMException)));
-
-            Assert.True(_oneErrorRegex.IsMatch(received));
+            Assert.Contains(nameof(COMException), received);
+            Assert.Matches(_oneErrorRegex, received);
         }
 
         [Fact]
@@ -92,15 +94,16 @@ namespace ErrorHandling.Test
             var exceptionsAggregated = new AggregateException(tmp);
             var received = exceptionsAggregated.Summary();
 
-            Assert.True(received.Contains(nameof(DllNotFoundException)));
-            Assert.True(received.Contains(nameof(ArgumentException)));
-            Assert.True(received.Contains(nameof(COMException)));
+            Assert.Contains(nameof(DllNotFoundException), received);
+            Assert.Contains(nameof(ArgumentException), received);
+            Assert.Contains(nameof(COMException), received);
 
-            Assert.True(Regex.IsMatch(received, OpeningSequenceMultipleRegex));
-            Assert.True(Regex.IsMatch(received, $"{nameof(ArgumentException)}{RegexForThreeTimes}"));
-            Assert.True(Regex.IsMatch(received, $"{nameof(DllNotFoundException)}{RegexForOnce}"));
-            Assert.True(Regex.IsMatch(received, $"{nameof(COMException)}{RegexForOnce}"));
+            Assert.Matches(OpeningSequenceMultipleRegex, received);
+            Assert.Matches($"{nameof(ArgumentException)}{RegexForThreeTimes}", received);
+            Assert.Matches($"{nameof(DllNotFoundException)}{RegexForOnce}", received);
+            Assert.Matches($"{nameof(COMException)}{RegexForOnce}", received);
         }
+
         [Fact]
         public void SummaryForAggregatedOrdersErrorsFromMostOccuringDescending()
         {
@@ -113,34 +116,36 @@ namespace ErrorHandling.Test
             var exceptionsAggregated = new AggregateException(tmp);
             var received = exceptionsAggregated.Summary();
             var multilineRegex = new Regex($"{OpeningSequenceMultipleRegex}.?.?.?({error2.GetType().FullName}|{error2.GetType().Name}){RegexForThreeTimes}", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            Assert.True(multilineRegex.IsMatch(received));
+            Assert.Matches(multilineRegex, received);
         }
+
         [Fact]
         public void SummaryForAggregatedGentlyRespondsWhenNoErrors()
         {
             var received = new AggregateException().Summary();
 
-            Assert.True(_noErrorsRegex.IsMatch(received));
+            Assert.Matches(_noErrorsRegex, received);
         }
+
         [Fact]
         public void SummaryForAggregatedThrowsWhenNullArguiment()
         {
-            AggregateException received = null;
+            AggregateException? received = null;
 
-            Assert.Throws<ArgumentNullException>(() => Extensions.Summary(received));
-            Assert.Throws<ArgumentNullException>(() => received.Summary());
+            Assert.Throws<ArgumentNullException>(() => Extensions.Summary(received!));
+            Assert.Throws<ArgumentNullException>(() => received!.Summary());
         }
+
         [Fact]
         public void SummaryForAggregatedDoesNotPluralizeWhenOnlyOneErrorOccurred()
         {
             var error1 = new COMException();
 
-            var exceptionsAggregated = new AggregateException(new List <Exception> { error1 });
+            var exceptionsAggregated = new AggregateException(new List<Exception> { error1 });
             var received = exceptionsAggregated.Summary();
 
-            Assert.True(received.Contains(nameof(COMException)));
-
-            Assert.True(_oneErrorRegex.IsMatch(received));
+            Assert.Contains(nameof(COMException), received);
+            Assert.Matches(_oneErrorRegex, received);
         }
     }
 }
