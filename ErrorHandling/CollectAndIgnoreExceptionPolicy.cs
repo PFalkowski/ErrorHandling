@@ -20,7 +20,7 @@ namespace ErrorHandling
             set => _storeLastNExceptions = Math.Max(value, MinNExceptions);
         }
 
-        public Exception LastException { get; private set; }
+        public Exception? LastException { get; private set; }
 
         public void HandleException(Exception ex)
         {

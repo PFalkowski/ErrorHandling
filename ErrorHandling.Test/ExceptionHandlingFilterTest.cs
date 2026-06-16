@@ -18,8 +18,8 @@ namespace ErrorHandling.Test
         {
             var substituteForErrorHandlingPolicy = Substitute.For<IExceptionHandlingPolicy>();
             var filter = new ExceptionHandlingFilter(substituteForErrorHandlingPolicy);
-            Assert.True(filter.ExcludedExceptios.Contains(typeof(OutOfMemoryException)));
-            Assert.True(filter.ExcludedExceptios.Contains(typeof(InsufficientExecutionStackException)));
+            Assert.Contains(typeof(OutOfMemoryException), filter.ExcludedExceptios);
+            Assert.Contains(typeof(InsufficientExecutionStackException), filter.ExcludedExceptios);
         }
 
         [Theory]
